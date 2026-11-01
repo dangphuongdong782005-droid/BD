@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Financial Big Data — Practice Quiz</title>
+<style>
+:root{--bg:#fafafa;--fg:#111;--mut:#555;--card:#fff;--line:#bbb;--ok:#e3f1e6;--okl:#1f6b35;--no:#f6e1e1;--nol:#9b1c1c;--acc:#111;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--fg:#eee;--mut:#aaa;--card:#1d1d1d;--line:#444;--ok:#183222;--okl:#7fd49a;--no:#361c1c;--nol:#f09a9a;--acc:#eee}}
+:root[data-theme="dark"]{--bg:#141414;--fg:#eee;--mut:#aaa;--card:#1d1d1d;--line:#444;--ok:#183222;--okl:#7fd49a;--no:#361c1c;--nol:#f09a9a;--acc:#eee}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 1.5rem/1.2 Georgia,"Times New Roman",serif;margin:0 0 4px}
+.sub{color:var(--mut);font-size:.9rem;margin:0 0 16px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:.85rem;margin-bottom:14px}
+.q{font:600 1.15rem/1.4 Georgia,"Times New Roman",serif;margin:0 0 14px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--fg);border:1.5px solid var(--line);border-radius:8px;padding:11px 12px;margin:0 0 8px;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt:focus-visible,.nx:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.opt b{min-width:1.4em}
+.opt.ok{background:var(--ok);border-color:var(--okl)}.opt.no{background:var(--no);border-color:var(--nol)}
+.fb{margin-top:14px}
+.ex{border-left:4px solid var(--line);padding:6px 10px;margin:0 0 8px;background:var(--card);border-radius:0 6px 6px 0}
+.ex.ok{border-color:var(--okl)}.ex.no{border-color:var(--nol)}
+.ex p{margin:0}.ex .vi{color:var(--mut);font-size:.92rem;margin-top:2px}
+.ex strong{font-size:.9rem}
+.tip{border:1.5px dashed var(--acc);border-radius:8px;padding:8px 12px;margin:12px 0}
+.tip p{margin:0}.tip .vi{color:var(--mut);font-size:.92rem;margin-top:2px}
+.nx{background:var(--acc);color:var(--bg);border:0;border-radius:8px;padding:11px 20px;font:600 1rem system-ui,sans-serif;cursor:pointer}
+.res{text-align:center;padding:24px 0}.res .n{font:700 3rem/1 Georgia,serif}
+.miss{color:var(--mut);margin:12px 0 18px}
+</style>
+</head>
+<body>
+<main>
+<h1>Financial Big Data — Practice Quiz</h1>
+<p class="sub">Weeks 1–7 · Questions and options in English · Explanations in English and Vietnamese</p>
+<div class="bar"><i id="bar"></i></div>
+<div class="meta"><span id="pos"></span><span id="sc"></span></div>
+<div id="app"></div>
+</main>
+<script>
+var Q=[
+{q:"Stale prices, bad ticks and later restatements of reported figures mainly threaten which “V” of financial big data?",o:["Volume","Velocity","Variety","Veracity"],a:3,
+w:[["Volume is how much data there is, not whether it is reliable.","Volume là lượng dữ liệu, không nói đến độ tin cậy."],["Velocity is the speed of arrival and reaction, not data quality.","Velocity là tốc độ dữ liệu đến và phản ứng, không phải chất lượng."],["Variety is the mix of formats and sources, not errors.","Variety là sự đa dạng định dạng và nguồn, không phải lỗi dữ liệu."],["Veracity covers reliability, noise, missing values and restatements.","Veracity là độ tin cậy, nhiễu, giá trị thiếu và điều chỉnh số liệu."]],
+t:["Bad data quality = Veracity; big, fast, mixed = Volume, Velocity, Variety.","Chất lượng dữ liệu kém = Veracity; lớn, nhanh, đa dạng = Volume, Velocity, Variety."]},
+{q:"A model predicts returns for 31 March using a company’s earnings that were restated and published in July. Which problem is this?",o:["Survivorship bias","Look-ahead bias (data leakage)","Class imbalance","Underfitting"],a:1,
+w:[["Survivorship bias means keeping only firms that survived; nothing here is about delisted firms.","Survivorship bias là chỉ giữ công ty còn tồn tại; ở đây không nói về công ty bị hủy niêm yết."],["The number was not known on 31 March, so future information leaked into the model.","Con số này chưa biết vào 31/3 nên thông tin tương lai đã lọt vào mô hình."],["Class imbalance is about rare classes, not the timing of information.","Mất cân bằng lớp nói về lớp hiếm, không phải thời điểm thông tin."],["Underfitting is a model that is too simple; the issue here is data timing.","Underfitting là mô hình quá đơn giản; vấn đề ở đây là thời điểm của dữ liệu."]],
+t:["For every feature ask: was this known on the decision date? (point-in-time)","Với mỗi đặc trưng hãy hỏi: tại ngày quyết định đã biết chưa? (point-in-time)"]},
+{q:"How many trainable parameters (weights and biases) does a 5-3-2-1 feedforward network have?",o:["23","29","33","15"],a:1,
+w:[["23 counts weights only (15 + 6 + 2) and forgets the biases.","23 chỉ đếm trọng số (15 + 6 + 2) mà quên bias."],["(3×5+3) + (2×3+2) + (1×2+1) = 18 + 8 + 3 = 29.","(3×5+3) + (2×3+2) + (1×2+1) = 18 + 8 + 3 = 29."],["33 over-counts; each layer has m×m_prev weights plus only m biases.","33 là đếm thừa; mỗi lớp có m×m_trước trọng số và chỉ m bias."],["15 counts only the first layer’s weights.","15 chỉ đếm trọng số của lớp đầu."]],
+t:["Layer parameters = m·m_prev + m; add layer by layer.","Tham số mỗi lớp = m·m_trước + m; cộng từng lớp."]},
+{q:"Which output layer and loss fit a model that predicts the probability that a borrower defaults?",o:["Linear output with MSE","Sigmoid output with binary cross-entropy","Tanh output with MSE","Softplus output with MSE"],a:1,
+w:[["A linear output is unbounded, so it can give “probabilities” below 0 or above 1.","Đầu ra tuyến tính không bị chặn nên có thể cho “xác suất” nhỏ hơn 0 hoặc lớn hơn 1."],["Sigmoid maps to (0,1) and cross-entropy punishes confident wrong answers.","Sigmoid đưa về (0,1) và cross-entropy phạt nặng khi tự tin mà sai."],["Tanh gives (−1,1), which suits a bearish-to-bullish score, not a probability.","Tanh cho (−1,1), hợp điểm giảm–tăng chứ không phải xác suất."],["Softplus suits non-negative targets such as intensity, with no upper bound of 1.","Softplus dành cho mục tiêu không âm như cường độ, không bị chặn ở 1."]],
+t:["Match the output layer to the target’s range: real → linear, binary → sigmoid, multi-class → softmax.","Chọn lớp đầu ra theo miền của mục tiêu: số thực → linear, nhị phân → sigmoid, đa lớp → softmax."]},
+{q:"Minimising J(θ) = θ² from θ = 4 (gradient 2θ), which learning rate makes the first update overshoot and land farther from 0 than the start?",o:["η = 0.1","η = 0.5","η = 0.9","η = 1.1"],a:3,
+w:[["η = 0.1 gives 4 − 0.1×8 = 3.2, which is closer to 0.","η = 0,1 cho 4 − 0,1×8 = 3,2, gần 0 hơn."],["η = 0.5 gives 4 − 0.5×8 = 0, landing exactly on the minimum.","η = 0,5 cho 4 − 0,5×8 = 0, đúng điểm cực tiểu."],["η = 0.9 gives −3.2: it overshoots, but |−3.2| < 4, so it is still closer.","η = 0,9 cho −3,2: vượt qua nhưng |−3,2| < 4 nên vẫn gần hơn."],["η = 1.1 gives 4 − 1.1×8 = −4.8, farther than 4, so the updates diverge.","η = 1,1 cho 4 − 1,1×8 = −4,8, xa hơn 4 nên phân kỳ."]],
+t:["Too large η diverges, too small learns slowly; check by plugging in numbers.","η quá lớn thì phân kỳ, quá nhỏ thì học chậm; thử thay số để kiểm tra."]},
+{q:"Training MSE over four epochs is 0.040, 0.025, 0.015, 0.009 and validation MSE is 0.043, 0.030, 0.028, 0.041. What should you do?",o:["Keep training: training error is still falling","Stop at epoch 3 and keep that model (early stopping)","Raise the learning rate","Add more hidden units"],a:1,
+w:[["Training error nearly always falls; the rising validation error at epoch 4 signals overfitting.","Lỗi train gần như luôn giảm; lỗi validation tăng ở epoch 4 báo hiệu overfitting."],["Validation is best at epoch 3, then worsens as the model starts memorising noise.","Validation tốt nhất ở epoch 3 rồi xấu đi khi mô hình bắt đầu học thuộc nhiễu."],["A higher learning rate does not cure overfitting and can destabilise training.","Tăng learning rate không chữa overfitting và có thể gây mất ổn định."],["More units add capacity and usually make overfitting worse.","Thêm nơ-ron tăng dung lượng và thường làm overfitting nặng hơn."]],
+t:["Train ↓ while validation ↑ = overfitting → regularise or stop early.","Train giảm mà validation tăng = overfitting → chính quy hóa hoặc dừng sớm."]},
+{q:"Predicted probabilities for six articles are 0.90, 0.80, 0.70, 0.60, 0.40, 0.20 and the true labels are 1, 0, 1, 0, 1, 0. At cutoff 0.85, what are precision and recall?",o:["Precision 100%, recall 33.3%","Precision 50%, recall 66.7%","Precision 100%, recall 100%","Precision 33.3%, recall 100%"],a:0,
+w:[["Only 0.90 is called positive and it is right (TP = 1, FP = 0), but 2 of 3 positives are missed (FN = 2).","Chỉ 0,90 được dự đoán dương và đúng (TP = 1, FP = 0), nhưng bỏ sót 2/3 mẫu dương (FN = 2)."],["That is the result at cutoff 0.50, not 0.85.","Đó là kết quả ở ngưỡng 0,50, không phải 0,85."],["Recall 100% would need all three positives caught; at 0.85 two are missed.","Recall 100% cần bắt đủ cả ba mẫu dương; ở 0,85 bị sót hai."],["This swaps precision and recall and fits neither cutoff.","Đáp án này đảo precision và recall và không khớp ngưỡng nào."]],
+t:["Raising the cutoff can lift precision but lowers recall; choose it on validation data.","Nâng ngưỡng có thể tăng precision nhưng giảm recall; chọn ngưỡng trên validation."]},
+{q:"Which method can shrink some coefficients exactly to zero, giving a sparse model and automatic feature selection?",o:["Ridge (L2 penalty)","OLS","K-NN","LASSO (L1 penalty)"],a:3,
+w:[["Ridge shrinks coefficients smoothly toward zero but usually not exactly to zero.","Ridge co hệ số mượt về gần 0 nhưng thường không bằng 0 hẳn."],["OLS has no penalty, so it keeps all coefficients and can be unstable.","OLS không có hình phạt nên giữ mọi hệ số và có thể không ổn định."],["K-NN has no coefficients; it averages the outcomes of the nearest neighbours.","K-NN không có hệ số; nó lấy trung bình kết quả của các láng giềng gần nhất."],["The L1 penalty λΣ|β| can set some coefficients exactly to 0.","Hình phạt L1 λΣ|β| có thể ép một số hệ số về đúng 0."]],
+t:["L1 = sparse (selects), L2 = shrinks (stabilises), elastic net = both.","L1 = thưa (chọn biến), L2 = co hệ số (ổn định), elastic net = cả hai."]},
+{q:"A tree’s target has entropy H(Y) = 0.990. After splitting on a feature, H(Y|X) = 0.696. What is the information gain?",o:["0.294","0.696","0.990","1.686"],a:0,
+w:[["IG = H(Y) − H(Y|X) = 0.990 − 0.696 = 0.294.","IG = H(Y) − H(Y|X) = 0,990 − 0,696 = 0,294."],["0.696 is the uncertainty remaining after the split, not the gain.","0,696 là bất định còn lại sau khi tách, không phải độ lợi."],["0.990 is the uncertainty before the split.","0,990 là bất định trước khi tách."],["1.686 adds the two entropies instead of subtracting.","1,686 là cộng hai entropy thay vì trừ."]],
+t:["Information gain = uncertainty before − uncertainty after; bigger is a better split.","Information gain = bất định trước − bất định sau; càng lớn càng tốt."]},
+{q:"With confidence threshold τ = 0.80, an unlabeled article scores positive 0.72, neutral 0.18, negative 0.10. What does self-training do with it?",o:["Accepts it as a positive pseudo-label","Rejects it and keeps it unlabeled","Accepts it as neutral","Lowers τ until it is accepted"],a:1,
+w:[["The top probability 0.72 is below 0.80, so it is not accepted.","Xác suất cao nhất 0,72 thấp hơn 0,80 nên không được nhận."],["0.72 < 0.80, so the article stays unlabeled in this round.","0,72 < 0,80 nên bài vẫn chưa nhãn ở vòng này."],["Neutral has only 0.18; a label would follow the largest probability anyway.","Trung lập chỉ có 0,18; nhãn luôn theo xác suất lớn nhất."],["Lowering τ to force acceptance adds noisy labels and raises the risk of error reinforcement.","Hạ τ để ép nhận làm thêm nhãn nhiễu và tăng rủi ro củng cố lỗi."]],
+t:["Higher τ = fewer but cleaner pseudo-labels.","τ cao = ít nhãn giả hơn nhưng sạch hơn."]},
+{q:"What is the main check that self-training with pseudo-labels actually helped?",o:["Training accuracy rises","The model becomes more confident","Performance improves on confirmed (human-labeled) validation data","The number of pseudo-labels keeps growing"],a:2,
+w:[["Training accuracy can rise just by memorising wrong pseudo-labels.","Accuracy huấn luyện có thể tăng chỉ vì học thuộc nhãn giả sai."],["Confidence can grow from repeating its own early mistakes (error reinforcement).","Độ tự tin có thể tăng do lặp lại chính lỗi ban đầu (củng cố lỗi)."],["Only confirmed labels show whether the model really improved.","Chỉ nhãn đã xác nhận mới cho biết mô hình có thật sự tốt lên."],["More pseudo-labels are not better labels; quantity says nothing about correctness.","Nhiều nhãn giả hơn không có nghĩa là nhãn tốt hơn; số lượng không nói lên độ đúng."]],
+t:["SSL is acceptable only if confirmed-label validation improves.","SSL chỉ chấp nhận được nếu cải thiện trên nhãn đã xác nhận."]},
+{q:"Why does Bag of Words struggle to tell “The company did not increase profit” from “The company increased profit”?",o:["It keeps word counts but not word order or which phrase is negated","Its vocabulary is too large","It cannot count words","It only works for numbers"],a:0,
+w:[["The two sentences share most words, and a bag ignores order and the scope of negation.","Hai câu dùng gần như cùng các từ, và túi từ bỏ qua thứ tự và phạm vi phủ định."],["Vocabulary size is not the issue; a frozen vocabulary is a different limitation.","Kích thước từ vựng không phải vấn đề; từ vựng đóng băng là hạn chế khác."],["Counting words is exactly what BoW does.","Đếm từ chính là việc BoW làm."],["BoW is built for text; the issue is lost order and context.","BoW dành cho văn bản; vấn đề là mất thứ tự và ngữ cảnh."]],
+t:["BoW’s limits: lost order/negation, one fixed feature per word, a frozen vocabulary.","Hạn chế của BoW: mất thứ tự/phủ định, mỗi từ một đặc trưng cố định, từ vựng đóng băng."]},
+{q:"In a PCA of VN30 daily returns, what does a score describe?",o:["How strongly each stock contributes to a component","The location of one trading date on a component","The variance captured by a component","The sign convention of the component"],a:1,
+w:[["That describes a loading (per stock), not a score.","Đó là loading (theo cổ phiếu), không phải score."],["A score places one observation, here a trading date, on a component.","Score đặt một quan sát, ở đây là một ngày giao dịch, lên một thành phần."],["Variance captured is the eigenvalue λ, not a score.","Phương sai nắm được là giá trị riêng λ, không phải score."],["The sign of a component has no intrinsic meaning and is not a score.","Dấu của thành phần không có ý nghĩa nội tại và không phải là score."]],
+t:["Loading = by stock (variable); score = by date (observation).","Loading = theo cổ phiếu (biến); score = theo ngày (quan sát)."]},
+{q:"PCA eigenvalues are 5, 3, 1 and 1. What share of total variance do the first two components explain?",o:["50%","60%","80%","90%"],a:2,
+w:[["50% is PC1 alone (5/10).","50% chỉ là PC1 (5/10)."],["60% does not match any sum of these shares.","60% không khớp tổng nào của các tỷ lệ này."],["Total = 10, so (5 + 3)/10 = 80%.","Tổng = 10 nên (5 + 3)/10 = 80%."],["90% would include a third component: (5 + 3 + 1)/10.","90% là gồm cả thành phần thứ ba: (5 + 3 + 1)/10."]],
+t:["EVR_k = λ_k / Σλ; a good fit does not prove forecasting value.","EVR_k = λ_k / Σλ; nén tốt không chứng minh giá trị dự báo."]},
+{q:"Why can big data increase false discoveries in finance?",o:["Larger data removes noise automatically","Testing many patterns on lots of data finds accidental ones when validation is weak","Financial theory no longer applies","Models cannot be validated on big data"],a:1,
+w:[["More data does not remove noise; it can even add more chances to find chance patterns.","Nhiều dữ liệu không tự loại nhiễu; còn tạo thêm cơ hội tìm ra quy luật ngẫu nhiên."],["Searching many patterns in large data yields some that look real by chance, so validation matters.","Tìm nhiều quy luật trên dữ liệu lớn sẽ có vài quy luật trông như thật do ngẫu nhiên, nên kiểm định rất quan trọng."],["Big data changes the empirical setting but does not replace financial theory.","Big data thay đổi môi trường thực nghiệm nhưng không thay thế lý thuyết tài chính."],["Out-of-sample validation is still possible and necessary.","Kiểm định ngoài mẫu vẫn làm được và cần thiết."]],
+t:["Big data amplifies false discoveries unless validation is strong.","Big data khuếch đại phát hiện sai nếu kiểm định yếu."]},
+{q:"Why must a neural network use nonlinear activation functions?",o:["Without them stacked layers collapse into one linear transformation","To reduce the number of parameters","To enlarge the training set","To avoid needing a loss function"],a:0,
+w:[["W₂(W₁x) = (W₂W₁)x is still linear, however many layers are stacked.","W₂(W₁x) = (W₂W₁)x vẫn tuyến tính, dù xếp bao nhiêu lớp."],["Activations do not reduce parameters; they add nonlinearity.","Hàm kích hoạt không giảm tham số; nó thêm tính phi tuyến."],["Activations do not create data.","Hàm kích hoạt không tạo thêm dữ liệu."],["A loss function is always needed to train.","Luôn cần hàm loss để huấn luyện."]],
+t:["No activation = a deep network equals a single linear model.","Không có hàm kích hoạt = mạng sâu chỉ bằng một mô hình tuyến tính."]},
+{q:"What is the difference between backpropagation and gradient descent?",o:["Backpropagation computes the gradients; gradient descent uses them to update the parameters","They are two names for the same step","Gradient descent computes the loss; backpropagation splits the data","Backpropagation updates the learning rate"],a:0,
+w:[["Backprop sends error backward via the chain rule; gradient descent applies θ − η∇J.","Backprop đẩy sai số ngược bằng quy tắc chuỗi; hạ gradient áp dụng θ − η∇J."],["They play different roles in training.","Chúng đóng vai trò khác nhau khi huấn luyện."],["The loss comes from the forward pass; backprop does not split data.","Loss đến từ lượt truyền thẳng; backprop không chia dữ liệu."],["The learning rate is a hyperparameter set by you.","Learning rate là siêu tham số do bạn đặt."]],
+t:["Feedforward predicts; backprop gets gradients; gradient descent updates.","Feedforward dự đoán; backprop tính gradient; hạ gradient cập nhật."]},
+{q:"Which split is correct for a daily stock-return series?",o:["Shuffle days randomly into train, validation and test","Train on the earliest period, validate on a later one, test on the latest","Test on the earliest period","Use the test set to tune λ"],a:1,
+w:[["Random shuffling lets the model peek at the future.","Xáo ngẫu nhiên khiến mô hình nhìn trộm tương lai."],["Chronological order trains on the past and tests on unseen future.","Thứ tự thời gian huấn luyện bằng quá khứ và kiểm tra bằng tương lai chưa thấy."],["Testing on the earliest period uses future data to predict the past.","Kiểm tra ở giai đoạn sớm nhất là dùng tương lai để dự đoán quá khứ."],["Tuning on the test set turns it into a validation set.","Chỉnh tham số trên test biến nó thành tập validation."]],
+t:["Time series: always split chronologically.","Chuỗi thời gian: luôn chia theo thời gian."]},
+{q:"Which preprocessing avoids data leakage?",o:["Compute mean and standard deviation on the training set and reuse them on validation and test","Compute them on the full dataset before splitting","Compute separate means on each split","Standardise after looking at the test labels"],a:0,
+w:[["z = (x − μ_train)/σ_train keeps future information out of the fit.","z = (x − μ_train)/σ_train giữ thông tin tương lai ngoài mô hình."],["Full-sample statistics leak validation and test information.","Thống kê toàn mẫu làm lọt thông tin validation và test."],["Separate statistics put the splits on different scales.","Thống kê riêng làm các tập có thang đo khác nhau."],["Looking at test labels is leakage by definition.","Nhìn nhãn test chính là rò rỉ dữ liệu."]],
+t:["Fit scalers (and PCA) on train only.","Chỉ fit bộ chuẩn hóa (và PCA) trên train."]},
+{q:"A dropout layer has keep probability p = 0.8. What does this mean?",o:["About 20% of activations are randomly dropped during training and none at prediction","80% of activations are dropped","Dropout is applied only at prediction","Weights are set to zero permanently"],a:0,
+w:[["Keep p = 0.8 means drop rate 1 − p = 0.2, training only.","Giữ p = 0,8 nghĩa là tỷ lệ bỏ 1 − p = 0,2, chỉ khi huấn luyện."],["80% is the keep rate, not the drop rate.","80% là tỷ lệ giữ, không phải tỷ lệ bỏ."],["Dropout is inactive at prediction.","Dropout không dùng khi dự đoán."],["Masking is random and temporary.","Việc che là ngẫu nhiên và tạm thời."]],
+t:["Dropout stops over-reliance on a few hidden paths.","Dropout ngăn phụ thuộc quá mức vào vài đường ẩn."]},
+{q:"Six of nine positive–negative pairs are ranked correctly by a classifier. What is its AUC?",o:["0.667","0.500","0.333","0.900"],a:0,
+w:[["AUC = 6/9 ≈ 0.667, the share of correctly ranked pairs.","AUC = 6/9 ≈ 0,667, tỷ lệ cặp được xếp đúng."],["0.5 would mean ranking no better than chance.","0,5 nghĩa là xếp hạng không hơn ngẫu nhiên."],["0.333 is the share ranked wrongly.","0,333 là tỷ lệ xếp sai."],["0.9 would need 8.1 of 9 pairs correct.","0,9 cần 8,1 trên 9 cặp đúng."]],
+t:["AUC measures ranking, not calibration, and ignores the cutoff.","AUC đo xếp hạng, không đo hiệu chuẩn, và không phụ thuộc ngưỡng."]},
+{q:"Why can outliers strongly distort an OLS fit?",o:["Squared error penalises large mistakes much more heavily","OLS ignores large residuals","OLS uses absolute errors only","OLS cannot use numeric data"],a:0,
+w:[["An error of 10 costs 100 versus 1 for an error of 1, so outliers dominate.","Sai số 10 bị phạt 100 so với 1 cho sai số 1, nên ngoại lai chi phối."],["OLS weights large residuals most, not least.","OLS coi trọng phần dư lớn nhất, không phải ít nhất."],["Absolute error is a different loss (MAE).","Sai số tuyệt đối là loss khác (MAE)."],["OLS is designed for numeric data.","OLS vốn dành cho dữ liệu số."]],
+t:["Squared loss + outliers = strong influence on the fit.","Loss bình phương + ngoại lai = ảnh hưởng mạnh tới mô hình."]},
+{q:"Which situation favours Ridge regression over plain OLS?",o:["Many correlated predictors and a short sample","One predictor and a very long sample","No predictors","Only categorical labels"],a:0,
+w:[["Ridge shrinks coefficients smoothly and stabilises estimates when predictors move together.","Ridge co hệ số mượt và ổn định ước lượng khi các biến cùng chuyển động."],["With one predictor and lots of data, OLS is already stable.","Với một biến và nhiều dữ liệu, OLS đã ổn định."],["There is nothing to regularise without predictors.","Không có biến thì không có gì để chính quy hóa."],["Labels alone do not decide between Ridge and OLS.","Chỉ riêng nhãn không quyết định Ridge hay OLS."]],
+t:["Ridge = stability; LASSO = selection.","Ridge = ổn định; LASSO = chọn biến."]},
+{q:"What happens in K-NN when K is very small?",o:["The forecast overreacts to noise (high variance)","The forecast becomes too smooth","Overfitting becomes impossible","Training becomes impossible"],a:0,
+w:[["With K = 1 a single noisy neighbour drives the forecast.","Với K = 1 một láng giềng nhiễu quyết định dự báo."],["Over-smoothing happens when K is very large.","Làm mịn quá mức xảy ra khi K rất lớn."],["Small K is a classic way to overfit.","K nhỏ là cách điển hình gây overfit."],["K-NN just stores and compares data; there is no training obstacle.","K-NN chỉ lưu và so sánh dữ liệu; không có trở ngại huấn luyện."]],
+t:["Choose K by validation RMSE; scale features first.","Chọn K theo RMSE validation; chuẩn hóa đặc trưng trước."]},
+{q:"How does a random forest reduce the overfitting of a single tree?",o:["It averages many trees built on random samples and feature subsets","It uses one very deep tree","It removes all features","It raises the learning rate"],a:0,
+w:[["Averaging many less-correlated trees lowers variance.","Trung bình nhiều cây ít tương quan làm giảm phương sai."],["A single deep tree overfits more.","Một cây sâu đơn lẻ overfit nhiều hơn."],["Removing all features leaves nothing to learn from.","Bỏ hết đặc trưng thì không còn gì để học."],["Forests have no learning rate; that is a neural-network term.","Rừng cây không có learning rate; đó là thuật ngữ của NN."]],
+t:["Feature importance shows usage, not causality.","Feature importance cho biết mức dùng, không phải nhân quả."]},
+{q:"In a soft-margin SVM, what does a very large C do?",o:["Fits the labels aggressively with a narrow margin, risking overfitting","Widens the margin","Removes the kernel","Forces a linear model"],a:0,
+w:[["Large C penalises slack heavily, so the margin narrows.","C lớn phạt slack nặng nên margin hẹp lại."],["A small C gives the wider, noise-tolerant margin.","C nhỏ mới cho margin rộng, chịu nhiễu tốt."],["C does not remove the kernel.","C không loại bỏ kernel."],["The kernel, not C, controls linear versus curved boundaries.","Kernel, không phải C, quyết định biên thẳng hay cong."]],
+t:["Large C = tight fit; small C = tolerant of noise.","C lớn = khớp chặt; C nhỏ = chịu nhiễu."]},
+{q:"Which is an example of error reinforcement in self-training?",o:["A weak model’s wrong pseudo-labels are added to training and the next model becomes more biased","Adding validated human labels","Raising the confidence threshold","Auditing the human labels"],a:0,
+w:[["Wrong guesses become training data and the model grows confident in its own mistakes.","Dự đoán sai thành dữ liệu huấn luyện và mô hình tự tin vào chính lỗi."],["Validated labels are facts and reduce error.","Nhãn đã xác nhận là sự thật và làm giảm lỗi."],["A higher threshold is a safeguard.","Ngưỡng cao là một biện pháp bảo vệ."],["Auditing labels is a safeguard.","Kiểm toán nhãn là một biện pháp bảo vệ."]],
+t:["Safeguards: audit labels, high threshold, untouched test, compare before and after.","Biện pháp: kiểm toán nhãn, ngưỡng cao, giữ test nguyên, so trước và sau."]},
+{q:"What does “bidirectional” mean in BERT?",o:["It uses words on both sides of a word to decide its meaning","It reads the text twice in English","It translates in both directions","It predicts prices up and down"],a:0,
+w:[["Context on both sides separates “bank” the lender from “river bank”.","Ngữ cảnh hai phía phân biệt “bank” ngân hàng với “river bank” bờ sông."],["It is about context direction, not rereading.","Nó nói về hướng ngữ cảnh, không phải đọc lại."],["BERT is a representation model, not a translator.","BERT là mô hình biểu diễn, không phải mô hình dịch."],["BERT’s name is unrelated to price direction.","Tên BERT không liên quan đến hướng giá."]],
+t:["BERT = pretrained on BooksCorpus and English Wikipedia, then fine-tuned.","BERT = tiền huấn luyện trên BooksCorpus và English Wikipedia, rồi tinh chỉnh."]},
+{q:"When should PCA use the correlation matrix instead of the covariance matrix?",o:["When units differ or equal treatment of variables is intended","When one volatile variable should dominate","When there is no data","Never"],a:0,
+w:[["Correlation puts variables on comparable scales.","Tương quan đưa các biến về thang đo so sánh được."],["Covariance PCA lets high-variance variables dominate.","PCA hiệp phương sai để biến phương sai lớn chi phối."],["Neither matrix works without data.","Không ma trận nào dùng được nếu không có dữ liệu."],["Both are valid; the financial question decides.","Cả hai đều hợp lệ; câu hỏi tài chính quyết định."]],
+t:["No scaling choice is universally correct; compare both.","Không cách chuẩn hóa nào đúng mọi nơi; hãy so sánh cả hai."]},
+{q:"Which statement about the sign of a principal component is correct?",o:["v_k and −v_k are equivalent; the sign has no intrinsic meaning","A positive sign always means bullish","The sign decides the explained variance","Flipping the sign changes the result"],a:0,
+w:[["Reading the whole loading pattern matters, not the sign alone.","Quan trọng là đọc toàn bộ mẫu loading, không riêng dấu."],["PCA signs carry no market direction.","Dấu của PCA không mang hướng thị trường."],["Explained variance depends on the eigenvalue λ.","Phương sai giải thích phụ thuộc giá trị riêng λ."],["Flipping the sign gives the same component.","Đảo dấu cho cùng một thành phần."]],
+t:["Interpret loadings as a pattern, never as a single coefficient.","Diễn giải loading như một mẫu, không phải một hệ số riêng lẻ."]}
+];
+var i=0,score=0,locked=false,perm=[],miss=[],L="ABCD";
+var app=document.getElementById("app");
+function sh(){var p=[0,1,2,3];for(var k=3;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=p[k];p[k]=p[j];p[j]=t}return p}
+function pair(x,cls){return '<p>'+x[0]+'</p><p class="vi" lang="vi">'+x[1]+'</p>'}
+function show(){
+  var q=Q[i];locked=false;perm=sh();
+  document.getElementById("bar").style.width=(i/Q.length*100)+"%";
+  document.getElementById("pos").textContent="Question "+(i+1)+" of "+Q.length;
+  document.getElementById("sc").textContent="Score "+score;
+  var h='<h2 class="q">'+q.q+'</h2><div role="group" aria-label="Options">';
+  perm.forEach(function(o,k){h+='<button class="opt" data-k="'+k+'"><b>'+L[k]+'</b><span>'+q.o[o]+'</span></button>'});
+  app.innerHTML=h+'</div><div class="fb" id="fb" aria-live="polite"></div>';
+  app.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){pick(+b.dataset.k)}});
+}
+function pick(k){
+  if(locked)return;locked=true;var q=Q[i],o=perm[k],good=o===q.a;
+  if(good)score++;else miss.push(i+1);
+  var bs=app.querySelectorAll(".opt");
+  bs.forEach(function(b,n){b.disabled=true;if(perm[n]===q.a)b.classList.add("ok");else if(n===k)b.classList.add("no")});
+  var h='<h3 style="margin:0 0 8px">'+(good?"Correct ✓ / Chính xác":"Not quite ✗ / Chưa đúng")+'</h3>';
+  perm.forEach(function(p,n){var c=p===q.a;h+='<div class="ex '+(c?"ok":"no")+'"><strong>'+L[n]+' — '+(c?"Correct answer ✓ / Đáp án đúng":"Wrong ✗ / Sai")+'</strong>'+pair(q.w[p])+'</div>'});
+  h+='<div class="tip"><strong>Tip / Mẹo</strong>'+pair(q.t)+'</div><button class="nx" id="nx">'+(i<Q.length-1?"Next question":"See results")+'</button>';
+  document.getElementById("fb").innerHTML=h;
+  document.getElementById("sc").textContent="Score "+score;
+  var n=document.getElementById("nx");n.onclick=function(){i++;i<Q.length?show():end()};n.focus();
+}
+function end(){
+  document.getElementById("bar").style.width="100%";
+  document.getElementById("pos").textContent="Finished";
+  app.innerHTML='<div class="res"><div class="n">'+score+' / '+Q.length+'</div><p>'+Math.round(score/Q.length*100)+'% correct · '+Math.round(score/Q.length*100)+'% câu đúng</p><p class="miss">'+(miss.length?"Review questions: "+miss.join(", ")+" / Xem lại các câu: "+miss.join(", "):"Perfect score! / Điểm tuyệt đối!")+'</p><button class="nx" id="rs">Try again / Làm lại</button></div>';
+  document.getElementById("rs").onclick=function(){i=0;score=0;miss=[];show()};
+}
+show();
+</script>
+</body>
+</html>
